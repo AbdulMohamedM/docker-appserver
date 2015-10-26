@@ -10,7 +10,7 @@ RUN apk update \
     php-fpm php-json php-zlib php-xml php-pdo php-phar php-openssl \
     php-pdo_mysql php-mysqli php-cli php-ctype \
     php-gd php-iconv php-mcrypt php-soap php-apcu php-gmp \
-    php-pcntl php-pgsql php-pdo_pgsql php-ftp php-gettext php-dom
+    php-pgsql php-pdo_pgsql php-ftp php-gettext php-dom
 
 # fix php-fpm "Error relocating /usr/bin/php-fpm: __flt_rounds: symbol not found" bug
 RUN apk add -u musl

@@ -4,7 +4,7 @@ This container provides a Nginx and PHP Webserver stack for use in many web serv
 
 * Runs on Alpine Linux, a very secure, light os
 * Nginx with PHP FPM 5.6
-* PHP Libraries: json, zlib, xml, pdo, phar, openssl, pdo_mysql, mysqli, gd, iconv, mcrypt, soap, apcu, gmp, ctype, pcntl, pgsql, pdo_pgsql, ftp, gettext, dom
+* PHP Libraries: json, zlib, xml, pdo, phar, openssl, pdo_mysql, mysqli, gd, iconv, mcrypt, soap, apcu, gmp, ctype, pgsql, pdo_pgsql, ftp, gettext, dom
 * All logs are sent to stdout so you can use `docker logs` to get your info
 * Image is approx 65mb
 
