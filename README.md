@@ -82,7 +82,7 @@ sudo docker run \
     -v /path/to/your/app:/var/app \
     -v /path/to/your/app/config/nginx/nginx.conf:/etc/nginx/conf.d/app.conf \
     -p 1234:80 \
-    appserver-alpine
+    jc21/appserver
 ```
 
 If the docker started successfully you should be able to hit your docker host on port 1234 like so:
