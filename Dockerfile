@@ -4,13 +4,16 @@ FROM justcontainers/base-alpine
 RUN apk update
 RUN apk upgrade
 
+RUN echo "@edge http://dl-3.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
+
 # Install
 RUN apk update \
-    && apk add bash jq curl vim nginx nginx-lua ca-certificates \
+    && apk add bash jq curl vim ca-certificates \
     php-fpm php-json php-zlib php-xml php-pdo php-phar php-openssl \
     php-pdo_mysql php-mysqli php-cli php-ctype \
     php-gd php-iconv php-mcrypt php-soap php-apcu php-gmp \
-    php-pgsql php-pdo_pgsql php-ftp php-gettext php-dom
+    php-pgsql php-pdo_pgsql php-ftp php-gettext php-dom \
+    && apk add -U nginx-lua@edge
 
 # fix php-fpm "Error relocating /usr/bin/php-fpm: __flt_rounds: symbol not found" bug
 RUN apk add -u musl
