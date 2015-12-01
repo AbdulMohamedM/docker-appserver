@@ -5,7 +5,7 @@ RUN apk update
 RUN apk upgrade
 
 RUN echo "@edge http://dl-3.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories
-RUN echo "fs.file-max = 65535" > /etc/sysctl.d/01-custom.conf
+RUN echo "fs.file-max = 65535" > /etc/sysctl.conf
 
 # Install
 RUN apk update \
