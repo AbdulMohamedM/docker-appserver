@@ -11,7 +11,7 @@ RUN echo "fs.file-max = 65535" > /etc/sysctl.d/01-custom.conf
 RUN apk update \
     && apk add bash jq curl vim ca-certificates \
     php-fpm php-json php-zlib php-xml php-pdo php-phar php-openssl \
-    php-pdo_mysql php-mysqli php-cli php-ctype \
+    php-pdo_mysql php-mysqli php-cli php-ctype php-curl \
     php-gd php-iconv php-mcrypt php-soap php-apcu php-gmp \
     php-pgsql php-pdo_pgsql php-ftp php-gettext php-dom \
     && apk add -U nginx-lua@edge
