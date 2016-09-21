@@ -10,13 +10,13 @@ RUN echo "fs.file-max = 65535" > /etc/sysctl.conf
 # Install
 RUN apk update \
     && apk add bash jq curl vim ca-certificates \
-    php-fpm php-json php-zlib php-xml php-pdo php-phar php-openssl \
-    php-pdo_mysql php-mysqli php-cli php-ctype php-curl \
-    php-gd php-iconv php-mcrypt php-soap php-apcu php-gmp \
-    php-pgsql php-pdo_pgsql php-ftp php-gettext php-dom \
+    php5-fpm php5-json php5-zlib php5-xml php5-pdo php5-phar php5-openssl \
+    php5-pdo_mysql php5-mysqli php5-cli php5-ctype php5-curl \
+    php5-gd php5-iconv php5-mcrypt php5-soap php5-apcu php5-gmp \
+    php5-pgsql php5-pdo_pgsql php5-ftp php5-gettext php5-dom \
     && apk add -U nginx-lua@edge
 
-# fix php-fpm "Error relocating /usr/bin/php-fpm: __flt_rounds: symbol not found" bug
+# fix php5-fpm "Error relocating /usr/bin/php5-fpm: __flt_rounds: symbol not found" bug
 RUN apk add -u musl
 RUN rm -rf /var/cache/apk/*
 
@@ -33,7 +33,5 @@ RUN mkdir -p /etc/nginx/conf.d /var/app
 # entry
 ADD scripts/entrypoint.sh /
 RUN chmod +x /entrypoint.sh
-EXPOSE 80
 
 CMD [ "/entrypoint.sh" ]
-
