@@ -27,7 +27,7 @@ ADD env/.bashrc /root/
 
 # Nginx
 ADD nginx/nginx.conf /etc/nginx/
-ADD php/php-fpm.conf /etc/php/
+ADD php/php-fpm.conf /etc/php5/
 RUN mkdir -p /etc/nginx/conf.d /var/app
 
 # entry
