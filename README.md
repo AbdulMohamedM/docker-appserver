@@ -2,8 +2,8 @@
 
 This container provides a Nginx and PHP Webserver stack for use in many web server configurations.
 
-* Runs on Alpine Linux, a very secure, light os
-* Nginx with PHP FPM 5.6
+* Runs on Alpine Linux 3.5, a very secure, light os
+* Nginx with PHP FPM 7
 * PHP Libraries: json, zlib, xml, pdo, phar, openssl, pdo_mysql, mysqli, gd, iconv, mcrypt, soap, apcu, gmp, ctype, pgsql, pdo_pgsql, ftp, gettext, dom, curl
 * All logs are sent to stdout so you can use `docker logs` to get your info
 * Image is approx 65mb
@@ -41,9 +41,8 @@ server {
         try_files $uri =404;
 
         fastcgi_split_path_info ^(.+\.php)(/.+)$;
-        fastcgi_index           index.php;
-
-        fastcgi_pass                127.0.0.1:9000;
+        fastcgi_index               index.php;
+        fastcgi_pass                unix:/var/run/php7-fpm/www.socket;
         fastcgi_connect_timeout     30s;
         fastcgi_read_timeout        30s;
         fastcgi_send_timeout        60s;
