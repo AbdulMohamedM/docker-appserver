@@ -25,7 +25,7 @@ ADD env/.bashrc /root/
 # Nginx
 ADD nginx/nginx.conf /etc/nginx/
 ADD php/php-fpm.conf /etc/php7/
-RUN rm -rf /var/www/* && mkdir -p /etc/nginx/conf.d /var/app /run/nginx /tmp/nginx/fastcgi_temp /tmp/nginx/body
+RUN rm -rf /var/www/* && mkdir -p /etc/nginx/conf.d /var/app /run/nginx /tmp/nginx/fastcgi_temp /tmp/nginx/body /var/run/php7-fpm
 
 # entry
 ADD scripts/entrypoint.sh /
