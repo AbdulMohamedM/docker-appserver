@@ -15,5 +15,5 @@ php-fpm7
 
 # start nginx
 mkdir -p /tmp/nginx
-chown nginx /tmp/nginx
+chown root /tmp/nginx
 nginx
