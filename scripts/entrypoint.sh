@@ -11,7 +11,7 @@ if [ ${#files[@]} -eq 0 ]; then
 fi
 
 # start php-fpm
-php-fpm7
+php-fpm7 -R
 
 # start nginx
 mkdir -p /tmp/nginx
