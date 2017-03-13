@@ -52,6 +52,12 @@ server {
         fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
         fastcgi_param  PATH_INFO        $fastcgi_path_info;
         fastcgi_param  HTTP_REFERER     $http_referer;
+
+        # optional env vars to pass through to php:
+        fastcgi_param  APP_ENV  $APP_ENV;
+        fastcgi_param  DBI_AWS_ACCESS_KEY_ID  $DBI_AWS_ACCESS_KEY_ID;
+        fastcgi_param  DBI_AWS_SECRET_ACCESS_KEY  $DBI_AWS_SECRET_ACCESS_KEY;
+
         include fastcgi_params;
     }
 
