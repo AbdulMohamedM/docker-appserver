@@ -2,6 +2,17 @@ FROM alpine:3.5
 
 RUN echo "fs.file-max = 65535" > /etc/sysctl.conf
 
+# root filesystem
+COPY rootfs /
+
+# s6 overlay
+RUN apk add --no-cache curl \
+    && curl -L -s https://github.com/just-containers/s6-overlay/releases/download/v1.19.1.1/s6-overlay-amd64.tar.gz \
+    | tar xvzf - -C / \
+    && apk del --no-cache curl
+
+ENV S6_FIX_ATTRS_HIDDEN=1
+
 # Install
 RUN apk update && apk upgrade \
     && apk add \
@@ -11,7 +22,6 @@ RUN apk update && apk upgrade \
         php7-mbstring php7-session php7-gd php7-mcrypt php7-openssl php7-sockets php7-posix \
         php7-ldap php7-mysqli php7-soap php7-apcu php7-gmp php7-pgsql \
         php7-ftp php7-gettext nginx nginx-mod-http-lua
-#    && apk add -U nginx-lua@edge
 
 # fix php7-fpm "Error relocating /usr/bin/php7-fpm: __flt_rounds: symbol not found" bug
 RUN apk add -u musl
@@ -23,12 +33,13 @@ RUN sed -i -- 's/bin\/ash/bin\/bash/g' /etc/passwd
 ADD env/.bashrc /root/
 
 # Nginx
-ADD nginx/nginx.conf /etc/nginx/
-ADD php/php-fpm.conf /etc/php7/
+#ADD nginx/nginx.conf /etc/nginx/
+#ADD php/php-fpm.conf /etc/php7/
 RUN rm -rf /var/www/* && mkdir -p /etc/nginx/conf.d /var/app /run/nginx /tmp/nginx/fastcgi_temp /tmp/nginx/body /var/run/php7-fpm
 
 # entry
 ADD scripts/entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 
+ENTRYPOINT [ "/init" ]
 CMD [ "/entrypoint.sh" ]
